@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "yabao"
+  "defaultProject": "yabao",
+  "cli": {
+    "analytics": "496932c3-6beb-4490-afdc-4946aaf26bd2"
+  }
 }
