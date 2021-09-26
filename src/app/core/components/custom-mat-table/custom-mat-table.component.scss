@@ -1,0 +1,35 @@
+.highlight {
+  background: #cccccc; /*light gray*/
+}
+
+.highlight1 {
+  background: #87CEFA; /*light sky blue*/
+}
+
+.mat-cell {
+    word-break: break-word;
+}
+
+.editButton:hover,
+.editButton:focus {
+  background-color: #999999 !important;
+}
+
+.deleteButton:hover,
+.deleteButton:focus {
+  background-color: #999999 !important;
+}
+
+.mat-column-select {
+  flex: none;
+  width: 3em;
+  padding-left: 1em;
+  margin-top: 0.4em;
+}
+
+.row-followed-with-secondary {
+  border-bottom-width: 0;
+}
+.row-followed-with-secondary td{
+  border-bottom-width: 0;
+}

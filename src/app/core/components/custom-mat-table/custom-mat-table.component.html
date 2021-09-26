@@ -1,0 +1,142 @@
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort multiTemplateDataRows
+             matSortDisableClear="!options.config.clientSortPage">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select" *ngIf="canSelect">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox *ngIf="options.config.showSelectAll" color="primary" (change)="$event ? masterToggle() : null"
+                      [checked]="options.selection.hasValue() && isAllSelected()"
+                      [indeterminate]="options.selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="max-width: 70px;">
+        <mat-checkbox (click)="$event.stopPropagation()" color="primary" (change)="$event ? toggleSelection(element) : null"
+                      [checked]="options.selection.isSelected(element)" [aria-label]="checkboxLabel(element)" [disabled]="checkDisabledStatus(element)"
+                      [matTooltip]="getCheckboxTooltip(element)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Primary columns -->
+    <ng-container *ngFor="let column of options.columns; let colIndex = index" matColumnDef="{{column.value}}">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="column.isSortDisabled">
+        {{column.name}}
+      </mat-header-cell>
+      <mat-cell class="mat-cell-primary" *matCellDef="let row; let rowIndex = dataIndex">
+        <ng-container *ngIf="column.isAnchor && column.routerLink">
+          <a *ngIf="isValidAnchor(row,column); else noAnchor" [routerLink]="getRouterLink(row, column)"
+             [queryParams]="getQueryParams(row, column)" [innerHTML]="getCellValue(row, column)"></a>
+          <ng-template #noAnchor>
+            <div>N/A</div>
+          </ng-template>
+        </ng-container>
+        <ng-container *ngIf="column.isAnchor && column.hyperLink">
+          <a *ngIf="isValidAnchor(row,column); else noAnchor" [attr.href]="getHyperLink(row, column)" [target]="column.hyperLinkTarget"
+             [innerHTML]="getCellValue(row, column)"></a>
+          <ng-template #noAnchor>
+            <div>N/A</div>
+          </ng-template>
+        </ng-container>
+        <ng-container *ngIf="!column.isAnchor && !column.templateRef">{{ getCellValue(row, column) }}</ng-container>
+        <ng-container *ngIf="!!column.templateRef" [ngTemplateOutlet]="column.templateRef" [ngTemplateOutletContext]="{ $implicit: row, rowIndex: rowIndex }"></ng-container>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Secondary columns -->
+    <ng-container *ngFor="let column of options.secondaryColumns; let colIndex = index" matColumnDef="{{column.value}}">
+      <mat-cell class="mat-cell-secondary" *matCellDef="let row; let rowIndex = index">
+        <ng-container *ngIf="column.isAnchor && column.routerLink">
+          <a *ngIf="isValidAnchor(row,column); else noAnchor" [routerLink]="getRouterLink(row, column)"
+             [queryParams]="getQueryParams(row, column)" [innerHTML]="getCellValue(row, column)"></a>
+          <ng-template #noAnchor>
+            <div>N/A</div>
+          </ng-template>
+        </ng-container>
+        <ng-container *ngIf="column.isAnchor && column.hyperLink">
+          <a *ngIf="isValidAnchor(row,column); else noAnchor" [attr.href]="getHyperLink(row, column)" target="_blank"
+             [innerHTML]="getCellValue(row, column)"></a>
+          <ng-template #noAnchor>
+            <div>N/A</div>
+          </ng-template>
+        </ng-container>
+        <ng-container *ngIf="!column.isAnchor && !column.templateRef">{{ getCellValue(row, column) }}</ng-container>
+        <ng-container *ngIf="!!column.templateRef" [ngTemplateOutlet]="column.templateRef" [ngTemplateOutletContext]="{ $implicit: row, rowIndex: rowIndex }"></ng-container>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Edit Column -->
+    <ng-container matColumnDef="edit" *ngIf="canEdit">
+      <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+      <mat-cell *matCellDef="let element" class="mat-cell-primary edit">
+        <button class="editButton" mat-button type="button" aria-label="Edit" (click)="edit(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete" *ngIf="canDelete">
+      <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+      <mat-cell *matCellDef="let element" class="mat-cell-primary delete">
+        <button class="deleteButton" mat-button type="button" aria-label="Delete" (click)="delete(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Display Column -->
+    <ng-container matColumnDef="display" *ngIf="canDisplay">
+      <mat-header-cell *matHeaderCellDef>View</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button class="editButton" mat-button type="button" aria-label="Display" (click)="display(element)">
+          <mat-icon>pageview</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Custom Action -->
+    <ng-container matColumnDef="customAction" *ngIf="customAction">
+      <mat-header-cell *matHeaderCellDef>{{options.customActionHeaderTitle}}</mat-header-cell>
+      <mat-cell *matCellDef="let element" class="mat-cell-primary custom-action">
+        <button *ngIf="customActionType == MatTableCustomAction.Button" mat-flat-button color="primary" type="button"
+                (click)="custom(element)" [disabled]="customActionDisabled(element)">
+          {{options.customActionTitle}}
+        </button>
+        <a *ngIf="customActionType == MatTableCustomAction.Anchor" [attr.href]="'#'"
+           (click)="custom(element, $event)">{{options.customActionTitle}}</a>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Enable/Disable -->
+    <ng-container matColumnDef="toggle" *ngIf="canToggle">
+      <mat-header-cell *matHeaderCellDef>Enable/Disable</mat-header-cell>
+      <mat-cell *matCellDef="let element" class="mat-cell-primary toggle">
+        <div class="fit-inner">
+          Disabled
+          <mat-slide-toggle [(ngModel)]="element.isEnabled" (change)="toggle(element)" style="padding-left:5px;">
+          </mat-slide-toggle>
+          Enabled
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="primaryDisplayedColumns"></mat-header-row>
+
+    <!-- highlight the row that is clicked, keep it highlighted after paging out of the page, and then paging backed again -->
+    <mat-row *matRowDef="let row; columns: primaryDisplayedColumns;"
+             [ngClass]="{
+             'highlight': selectedDataIndex == dataSource.filteredData.indexOf(row),
+             'highlight1': options.selection.isSelected(row),
+             'row-followed-with-secondary': secondaryDisplayedColumns?.length
+             }"
+             (click)="onRowClicked(row, dataSource.filteredData.indexOf(row))"></mat-row>
+
+    <mat-row [hidden]="!secondaryDisplayedColumns?.length" *matRowDef="let row; columns: secondaryDisplayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator matPaginatorAccessibility [hidden]="!options.config.showPagination"
+                 [pageSizeOptions]="[5, 10, 25, 50, 100]" showFirstLastButtons>
+  </mat-paginator>
+</div>
