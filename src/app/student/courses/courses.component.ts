@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild,TemplateRef } from '@angular/core';
 import { MatTableDataSource } from "@angular/material/table";
 import { Student } from "../../core/models/student";
 import { ApiService } from "../../core/services/api.service";
@@ -18,16 +18,21 @@ export class CoursesComponent implements OnInit {
   dataSource = new MatTableDataSource<Student>();
   dataSubject = new BehaviorSubject<Student[]>([]);
   loaded = new BehaviorSubject<boolean>(false);
-  public displayedColumns = ['fullNameDef', 'checkShieldDef','firstNameDef', 'lastName', 'studentEmail', 'yearOfStudy', 'registrationNumber', 'course'];
+  @ViewChild("requestAttentionTemplate", { read: TemplateRef }) requestAttentionTemplate: TemplateRef<any>;
+
+
+  public displayedColumns = ['fullNameDef', 'checkShieldDef', 'firstNameDef', 'lastName', 'studentEmail', 'yearOfStudy', 'registrationNumber', 'course'];
+
   get matTableOptions(): MatTableOptions {
     let options: MatTableOptions = {
       records: this.dataSubject,
       columns: [
-        new MatTableColumnDefinition({ name: "Full Name", value: "fullNameDef", binding: ""}),
-        new MatTableColumnDefinition({ name: "Student Email", value: "emailDef", binding: "studentEmail"}),
+        new MatTableColumnDefinition({ name: "", value: "requestAttentionDef", templateRef: this.requestAttentionTemplate }),
+        new MatTableColumnDefinition({ name: "First Name", value: "firstName", binding: "firstName" }),
+        new MatTableColumnDefinition({ name: "Email", value: "email", binding: "studentEmail" }),
       ],
       config: new MatTableConfig({
-        sortBy: "fullNameDef",
+        sortBy: "firstName",
         sortDirection: "asc",
         pageSize: 10,
         showSelectCheckbox: true,
@@ -38,9 +43,11 @@ export class CoursesComponent implements OnInit {
 
     return options;
   }
+
   ngOnInit(): void {
     this.getStudentsInformation();
   }
+
   getStudentsInformation() {
     this.studentApiService.getStudentsInformation()
       .subscribe((res) => {
@@ -51,4 +58,19 @@ export class CoursesComponent implements OnInit {
       })
   }
 
+  showShield(student: Student): boolean {
+    return true;
+  }
+
+  getShieldClass(student:Student): string {
+    if(student.yearOfStudy > 2)
+    return 'error-shield';
+    else
+    return 'warning-shield';
+  }
+
+  getTooltip(student:Student):string{
+    return student.firstName + " has error";
+
+  }
 }
