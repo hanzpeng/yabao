@@ -8,3 +8,31 @@ th.mat-header-cell {
   text-align: left;
   max-width: 300px;
 }
+
+
+.check-shield > i {
+  font-family: 'Segoe MDL2 Assets';
+  font-style: normal;
+  line-height: 1;
+  font-size: 1rem;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  margin-right: 5px;
+  content: "\e83d";
+}
+
+
+.check-shield > i.error-shield {
+  color: #ff0000;
+  font-size: 0.75rem;
+}
+
+.check-shield > i.warning-shield {
+  color: #ffd700;
+  font-size: 0.75rem;
+}
+
+.check-shield > i:before {
+  content: "\e83d";
+}
+
