@@ -18,7 +18,7 @@ export class CoursesComponent implements OnInit {
   dataSource = new MatTableDataSource<Student>();
   dataSubject = new BehaviorSubject<Student[]>([]);
   loaded = new BehaviorSubject<boolean>(false);
-  public displayedColumns = ['fullNameDef', 'firstNameDef', 'lastName', 'studentEmail', 'yearOfStudy', 'registrationNumber', 'course'];
+  public displayedColumns = ['fullNameDef', 'checkShieldDef','firstNameDef', 'lastName', 'studentEmail', 'yearOfStudy', 'registrationNumber', 'course'];
   get matTableOptions(): MatTableOptions {
     let options: MatTableOptions = {
       records: this.dataSubject,

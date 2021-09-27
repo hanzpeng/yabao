@@ -8,6 +8,11 @@
       <td mat-cell *matCellDef="let element"> {{element.firstName + " " + element.lastName}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="checkShieldDef">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element" class="check-shield"> <i></i></td>
+    </ng-container>
+
     <ng-container matColumnDef="firstNameDef">
       <th mat-header-cell *matHeaderCellDef> First Name </th>
       <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
