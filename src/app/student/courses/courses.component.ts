@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild,TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild,TemplateRef, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from "@angular/material/table";
 import { Student } from "../../core/models/student";
 import { ApiService } from "../../core/services/api.service";
@@ -10,7 +10,7 @@ import { MatTableColumnDefinition, MatTableConfig, MatTableOptions } from '../..
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss']
 })
-export class CoursesComponent implements OnInit {
+export class CoursesComponent implements OnInit, AfterViewInit {
 
   constructor(private studentApiService: ApiService) { }
   title = 'Student Courses';
@@ -23,7 +23,8 @@ export class CoursesComponent implements OnInit {
 
   public displayedColumns = ['fullNameDef', 'checkShieldDef', 'firstNameDef', 'lastName', 'studentEmail', 'yearOfStudy', 'registrationNumber', 'course'];
 
-  get matTableOptions(): MatTableOptions {
+  matTableOptions: MatTableOptions
+  getMatTableOptions(): MatTableOptions {
     let options: MatTableOptions = {
       records: this.dataSubject,
       columns: [
@@ -45,6 +46,10 @@ export class CoursesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    this.matTableOptions = this.getMatTableOptions();
     this.getStudentsInformation();
   }
 
@@ -71,6 +76,5 @@ export class CoursesComponent implements OnInit {
 
   getTooltip(student:Student):string{
     return student.firstName + " has error";
-
   }
 }
