@@ -14,7 +14,7 @@ export class CoursesComponent implements OnInit, AfterViewInit {
 
   constructor(private studentApiService: ApiService) { }
   title = 'Student Courses';
-  student: Student[] = [];
+  students: Student[] = [];
   dataSource = new MatTableDataSource<Student>();
   dataSubject = new BehaviorSubject<Student[]>([]);
   loaded = new BehaviorSubject<boolean>(false);
@@ -59,6 +59,7 @@ export class CoursesComponent implements OnInit, AfterViewInit {
         console.log(res);
         this.dataSource.data = res;
         this.dataSubject.next(res);
+        this.students = res;
         this.loaded.next(true);
       })
   }

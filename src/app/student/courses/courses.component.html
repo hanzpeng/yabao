@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" *ngIf="loaded | async">
   <h1>
     {{title}}
   </h1>
-  <table mat-table [dataSource]="dataSource" *ngIf="loaded | async">
+  <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="fullNameDef">
       <th mat-header-cell *matHeaderCellDef> Full Name </th>
       <td mat-cell *matCellDef="let element"> {{element.firstName + " " + element.lastName}} </td>
@@ -12,7 +12,8 @@
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let element" class="check-shield">
         <i class="warning-shield" matTooltip="{{element.firstName + ' has error'}}">
-        </i></td>
+        </i>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="firstNameDef">
@@ -49,8 +50,39 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <custom-mat-table [options]="matTableOptions" *ngIf="loaded | async">
+  <h1>
+    Custom mat Table
+  </h1>
+  <custom-mat-table [options]="matTableOptions">
   </custom-mat-table>
+
+  <h1>
+    orderBy Pipe test
+  </h1>
+  <div *ngFor="let student of (students | orderBy: {property:'floor', direction: -1 })">
+    {{student.floor}}
+  </div>
+
+  <h1>
+    orderBy Pipe test
+  </h1>
+  <div *ngFor="let student of students | orderBy: {property:'firstName', direction: -1 }">
+    {{student.firstName}}
+  </div>
+
+  <h1>
+    orderBy Pipe test
+  </h1>
+  <div *ngFor="let student of students | orderBy: 'lastName'">
+    {{student.lastName}}
+  </div>
+
+  <h1>
+    orderBy Pipe test
+  </h1>
+  <div *ngFor="let student of students | orderBy: 'yearOfStudy'">
+    {{student.yearOfStudy}}
+  </div>
 
 </div>
 
@@ -58,10 +90,7 @@
 <!-- RequestAttention template -->
 <ng-template #requestAttentionTemplate let-row let-index="index">
   <div class="check-shield">
-    <i tabindex="0"
-       class="{{getShieldClass(row)}}"
-       *ngIf="showShield(row)"
-       matTooltip="{{getTooltip(row)}}">
+    <i tabindex="0" class="{{getShieldClass(row)}}" *ngIf="showShield(row)" matTooltip="{{getTooltip(row)}}">
     </i>
   </div>
 </ng-template>

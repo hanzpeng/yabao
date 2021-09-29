@@ -5,7 +5,35 @@
     "studentEmail": "johndoe@example.com",
     "course": "Bsc Software Engineering",
     "yearOfStudy": 2,
-    "registrationNumber": "1111"
+    "registrationNumber": "1111",
+    "floor": "A"
+  },
+  {
+    "firstName": "Alex",
+    "lastName": "Smith",
+    "studentEmail": "alexsmith@example.com",
+    "course": "Math 101",
+    "yearOfStudy": 3,
+    "registrationNumber": "5555",
+    "floor": "C"
+  },
+  {
+    "firstName": "Bob",
+    "lastName": "Bush",
+    "studentEmail": "bobbush@example.com",
+    "course": "Bsc Software Engineering",
+    "yearOfStudy": 3,
+    "registrationNumber": "3333",
+    "floor": "b"
+  },
+  {
+    "firstName": "Sherry",
+    "lastName": "Zhang",
+    "studentEmail": "sherryzhang@example.com",
+    "course": "CS101",
+    "yearOfStudy": 3,
+    "registrationNumber": "4444",
+    "floor": "DD"
   },
   {
     "firstName": "Test2",
@@ -13,6 +41,7 @@
     "studentEmail": "test@example.com",
     "course": "Bsc Computer Science",
     "yearOfStudy": 4,
-    "registrationNumber": "2222"
+    "registrationNumber": "2222",
+    "floor": "AE"
   }
 ]
