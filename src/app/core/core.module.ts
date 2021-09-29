@@ -4,11 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './modules/material.module';
 import { NgxModule } from './modules/ngx.module';
 import { CustomMatTableComponent } from './components/custom-mat-table/custom-mat-table.component';
+import { OrderByPipe } from './pipes/order-by.pipe';
 
 
 @NgModule({
   declarations: [
-    CustomMatTableComponent
+    CustomMatTableComponent,
+    OrderByPipe
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { CustomMatTableComponent } from './components/custom-mat-table/custom-ma
     CustomMatTableComponent,
     HttpClientModule,
     MaterialModule,
-    NgxModule
+    NgxModule,
+    OrderByPipe
   ]
 })
 export class CoreModule { }
