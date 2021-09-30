@@ -22,6 +22,10 @@ import { OrderByPipe } from './pipes/order-by.pipe';
     NgxModule
   ],
   exports: [
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     CustomMatTableComponent,
     HttpClientModule,
     MaterialModule,

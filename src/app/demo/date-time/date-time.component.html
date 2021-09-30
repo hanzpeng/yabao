@@ -1,4 +1,47 @@
-<div class="container" >
-<h1>@angular-material-components/datetime-picker test</h1>
-  <p>date-time works!</p>
+<!-- <div class='container'>
+  <mat-form-field>
+    <input matInput [ngxMatDatetimePicker]="picker"
+                    placeholder="Choose a date"
+                    [formControl]="dateControl"
+                    [min]="minDate"
+                    [max]="maxDate"
+                    [disabled]="disabled">
+    <mat-datepicker-toggle matSuffix [for]="picker">
+    </mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker
+      [showSpinners]="true"
+      [showSeconds]="false"
+      [stepHour]="1"
+      [stepMinute]="1"
+      [stepSecond]="1"
+      [touchUi]="false"
+      [color]="color">
+    </ngx-mat-datetime-picker>
+  </mat-form-field>
+  <div>
+    {{dateControl.value?.toLocaleString()}}
+  </div>
+</div> -->
+
+
+<div class='container'>
+  <mat-form-field>
+    <input matInput [ngxMatDatetimePicker]="picker"
+                    placeholder="Choose a date"
+                    [formControl]="dateControl">
+    <mat-datepicker-toggle matSuffix [for]="picker">
+    </mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker
+      [showSpinners]="true"
+      [showSeconds]="false"
+      [stepHour]="1"
+      [stepMinute]="1"
+      [stepSecond]="1"
+      [touchUi]="false"
+      [color]="'primary'">
+    </ngx-mat-datetime-picker>
+  </mat-form-field>
+  <div>
+    {{localTime}}
+  </div>
 </div>
