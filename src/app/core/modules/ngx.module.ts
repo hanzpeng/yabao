@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule,NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
-
+import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
 
 const maskConfig: Partial<IConfig> = { validation: true };
 
@@ -16,7 +16,8 @@ const maskConfig: Partial<IConfig> = { validation: true };
     NgxMaskModule,
     NgxMatTimepickerModule,
     NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    NgxMatMomentModule
   ]
 })
 export class NgxModule { }
