@@ -25,6 +25,9 @@
 
 
 <div class='container'>
+  <h1>
+    ngxMatDatetimePicker
+  </h1>
   <mat-form-field>
     <input matInput [ngxMatDatetimePicker]="picker"
                     placeholder="Choose a date"
@@ -40,6 +43,22 @@
       [touchUi]="false"
       [color]="'primary'">
     </ngx-mat-datetime-picker>
+  </mat-form-field>
+  <div>
+    {{localTime}}
+  </div>
+
+  <h1>
+    matDatepicker
+  </h1>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="pickerx"
+                    placeholder="Choose a date"
+                    [formControl]="dateControl">
+    <mat-datepicker-toggle matSuffix [for]="picker">
+    </mat-datepicker-toggle>
+    <mat-datepicker #pickerx></mat-datepicker>
   </mat-form-field>
   <div>
     {{localTime}}
