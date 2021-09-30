@@ -1,29 +1,3 @@
-<!-- <div class='container'>
-  <mat-form-field>
-    <input matInput [ngxMatDatetimePicker]="picker"
-                    placeholder="Choose a date"
-                    [formControl]="dateControl"
-                    [min]="minDate"
-                    [max]="maxDate"
-                    [disabled]="disabled">
-    <mat-datepicker-toggle matSuffix [for]="picker">
-    </mat-datepicker-toggle>
-    <ngx-mat-datetime-picker #picker
-      [showSpinners]="true"
-      [showSeconds]="false"
-      [stepHour]="1"
-      [stepMinute]="1"
-      [stepSecond]="1"
-      [touchUi]="false"
-      [color]="color">
-    </ngx-mat-datetime-picker>
-  </mat-form-field>
-  <div>
-    {{dateControl.value?.toLocaleString()}}
-  </div>
-</div> -->
-
-
 <div class='container'>
   <h1>
     ngxMatDatetimePicker
@@ -53,14 +27,16 @@
   </h1>
 
   <mat-form-field>
-    <input matInput [matDatepicker]="pickerx"
+    <input matInput [matDatepicker]="picker1"
                     placeholder="Choose a date"
                     [formControl]="dateControl">
-    <mat-datepicker-toggle matSuffix [for]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker1">
     </mat-datepicker-toggle>
-    <mat-datepicker #pickerx></mat-datepicker>
+    <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
   <div>
     {{localTime}}
   </div>
+
+
 </div>

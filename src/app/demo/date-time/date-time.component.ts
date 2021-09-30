@@ -1,12 +1,18 @@
 //https://stackblitz.com/edit/demo-ngx-mat-datetime-picker?file=src%2Fapp%2Fapp.component.html
 //https://www.npmjs.com/package/@angular-material-components/datetime-picker
 
+//https://stackoverflow.com/questions/62767985/how-can-i-customize-date-and-time-format-in-ngx-mat-datetime-picker
+//https://gist.githubusercontent.com/nandhakumargdr/635af05419793e15f3758656ddd1ef39/raw/337cf9ad8157c5e8ebd1de02437b2d56b7024f0b/CustomNgxDatetimeAdapter.ts
+
 import { HttpClient } from '@angular/common/http';
 import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, ThemePalette } from '@angular/material/core';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
+import { NgxMatDateAdapter, NgxMatDateFormats, NGX_MAT_DATE_FORMATS } from '@angular-material-components/datetime-picker';
+import { NGX_MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular-material-components/moment-adapter';
+import {CustomNgxDatetimeAdapter} from './custom-adapter';
 // import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 
 // Depending on whether rollup is used, moment needs to be imported differently.
@@ -26,11 +32,23 @@ export const MY_FORMATS = {
     dateInput: 'LL',
   },
   display: {
-    dateInput: 'YYYY-MM-DD',
+    dateInput: 'YYYY-MM-DD, HH:MM',
     monthYearLabel: 'YYYY',
     dateA11yLabel: 'LL',
     monthYearA11yLabel: 'YYYY',
   },
+};
+
+const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
+  parse: {
+    dateInput: 'l, LTS'
+  },
+  display: {
+    dateInput: 'YYYY-MM-DD HH:mm:ss',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  }
 };
 
 @Component({
@@ -44,6 +62,9 @@ export const MY_FORMATS = {
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
 
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+
+    {provide: NgxMatDateAdapter, useClass: CustomNgxDatetimeAdapter, deps: [MAT_DATE_LOCALE, NGX_MAT_MOMENT_DATE_ADAPTER_OPTIONS]    },
+    { provide: NGX_MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS }
   ],
 })
 export class DateTimeComponent implements OnInit {
