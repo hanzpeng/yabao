@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '../core/core.module';
-import { CoursesComponent } from './courses/courses.component';
+import { DateTimeComponent } from './date-time/date-time.component';
 
 
 @NgModule({
   declarations: [
-    CoursesComponent
+    DateTimeComponent
   ],
   imports: [
     CommonModule,
     CoreModule
   ],
   exports:[
-    CoursesComponent
+    DateTimeComponent
   ]
 })
-export class StudentModule { }
+export class DemoModule { }
