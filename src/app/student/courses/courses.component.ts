@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild,TemplateRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from "@angular/material/table";
 import { Student } from "../../core/models/student";
 import { ApiService } from "../../core/services/api.service";
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { MatTableColumnDefinition, MatTableConfig, MatTableOptions } from '../../core/components/custom-mat-table/custom-mat-table.component';
+import { catchError, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-courses',
@@ -46,6 +47,7 @@ export class CoursesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    // alert("Error Happend");
   }
 
   ngAfterViewInit(): void {
@@ -54,28 +56,50 @@ export class CoursesComponent implements OnInit, AfterViewInit {
   }
 
   getStudentsInformation() {
-    this.studentApiService.getStudentsInformation()
-      .subscribe((res) => {
-        console.log(res);
-        this.dataSource.data = res;
-        this.dataSubject.next(res);
-        this.students = res;
-        this.loaded.next(true);
-      })
+    this.studentApiService.getStudentsInformation().pipe(
+      map(
+        (students: Student[]) => {
+          //students.splice(1, 3);
+          if (students.length > 10) {
+            // return students;
+            throw new Error('Valid token not returned');
+          } else {
+            return students;
+          }
+        }
+      ),
+      map(
+        (students: any) => { return students; }
+      ),
+      map(
+        (students: any) => { return students; }
+      ),
+    )
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.dataSource.data = res;
+          this.dataSubject.next(res);
+          this.students = res;
+          this.loaded.next(true);
+        },
+        error => {
+          alert("Error Happend:" + error );
+        })
   }
 
   showShield(student: Student): boolean {
     return true;
   }
 
-  getShieldClass(student:Student): string {
-    if(student.yearOfStudy > 2)
-    return 'error-shield';
+  getShieldClass(student: Student): string {
+    if (student.yearOfStudy > 2)
+      return 'error-shield';
     else
-    return 'warning-shield';
+      return 'warning-shield';
   }
 
-  getTooltip(student:Student):string{
+  getTooltip(student: Student): string {
     return student.firstName + " has error";
   }
 }
