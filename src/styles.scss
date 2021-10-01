@@ -4,6 +4,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -24,11 +25,26 @@ h1 {
     background: #eee;
     padding: 1em;
   }
-  div:nth-child(4n+1) {
+  div:nth-child(4n + 1),
+  div:nth-child(4n + 2) {
     background: #ddd;
     padding: 1em;
   }
-  div:nth-child(4n+2) {
+}
+
+.grid-3-column {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-row-gap: 1pt;
+  grid-column-gap: 1pt;
+  width: fit-content;
+  div {
+    background: #eee;
+    padding: 1em;
+  }
+  div:nth-child(6n + 1),
+  div:nth-child(6n + 2),
+  div:nth-child(6n + 3) {
     background: #ddd;
     padding: 1em;
   }
