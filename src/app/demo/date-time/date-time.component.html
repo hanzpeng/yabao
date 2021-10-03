@@ -1,6 +1,6 @@
 <div class='container'>
   <h1>
-    ngxMatDatetimePicker
+    ngxMatDatetimePicker bind to Form Control
   </h1>
   <mat-form-field style="width:100%">
     <input matInput [ngxMatDatetimePicker]="picker"
@@ -21,4 +21,28 @@
   <div>
     {{localTime}}
   </div>
+
+  <h1>
+    ngxMatDatetimePicker bind to data
+  </h1>
+  <mat-form-field style="width:100%">
+    <input matInput [ngxMatDatetimePicker]="picker2"
+                    placeholder="Choose a date"
+                    [(ngModel)]="hanzDate">
+    <mat-datepicker-toggle matSuffix [for]="picker2">
+    </mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker2
+      [showSpinners]="true"
+      [showSeconds]="false"
+      [stepHour]="1"
+      [stepMinute]="1"
+      [stepSecond]="1"
+      [touchUi]="false"
+      [color]="'primary'">
+    </ngx-mat-datetime-picker>
+  </mat-form-field>
+  <div>
+    {{localTime}}
+  </div>
+
 </div>
