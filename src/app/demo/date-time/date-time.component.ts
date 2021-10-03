@@ -31,9 +31,21 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
 })
 export class DateTimeComponent implements OnInit {
   constructor() { }
+
+  _hanzDate = new Date(2021, 1, 3, 4, 5, 6)
+
   ngOnInit() {
     // this.date = moment(new Date(2021, 9, 4, 5, 6, 7));
   }
+
+  get hanzDate() {
+    return this._hanzDate;
+  }
+  set hanzDate(value){
+    this._hanzDate = value;
+    alert(this._hanzDate);
+  }
+
   public dateControl = new FormControl(new Date(2021, 9, 4, 5, 6, 7));
   public minDate: moment.Moment;
   public maxDate: moment.Moment;
