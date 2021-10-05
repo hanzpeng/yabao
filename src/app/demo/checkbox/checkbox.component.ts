@@ -30,8 +30,8 @@ export class CheckboxComponent implements OnInit {
 
   toggleSelected(student: Student) {
     let itemFound = false;
-    this.selectedStudents.forEach((member, index) => {
-      if (member == student) {
+    this.selectedStudents.forEach((item, index) => {
+      if (item == student) {
         itemFound = true;
         this.selectedStudents.splice(index, 1);
       }
@@ -42,8 +42,8 @@ export class CheckboxComponent implements OnInit {
   }
 
   isSelected(student: Student): boolean {
-    return this.selectedStudents.some(member => {
-      return member === student;
+    return this.selectedStudents.some(item => {
+      return item === student;
     });
   }
 
