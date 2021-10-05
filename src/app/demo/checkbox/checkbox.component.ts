@@ -41,8 +41,8 @@ export class CheckboxComponent implements OnInit {
     }
   }
 
-  isSelected(student:Student): boolean{
-    return this.selectedStudents.some(member =>{
+  isSelected(student: Student): boolean {
+    return this.selectedStudents.some(member => {
       return member === student;
     });
   }
