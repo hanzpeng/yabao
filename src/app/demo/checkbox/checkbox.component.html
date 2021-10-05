@@ -1,1 +1,15 @@
-<p>checkbox works!</p>
+<h1>Checkbox Test</h1>
+<div *ngIf="loaded | async">
+  <h2>Select Students</h2>
+  <div *ngFor="let student of students">
+    <label>
+      <input type="checkbox" [checked]="isSelected(student)" (click)="toggleSelected(student)" />
+      {{student.firstName+ " " + student.lastName}}
+    </label>
+  </div>
+  <hr>
+  <h2>Students Selected:</h2>
+  <div *ngFor="let student of selectedStudents">
+    {{student.firstName + " " + student.lastName}}
+  </div>
+</div>
