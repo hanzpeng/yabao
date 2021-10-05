@@ -4,12 +4,14 @@ import { CoreModule } from '../core/core.module';
 import { DateTimeComponent } from './date-time/date-time.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { MomentComponent } from './moment/moment.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
     DateTimeComponent,
     DatePickerComponent,
-    MomentComponent
+    MomentComponent,
+    CheckboxComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { MomentComponent } from './moment/moment.component';
   exports:[
     DateTimeComponent,
     DatePickerComponent,
-    MomentComponent
+    MomentComponent,
+    CheckboxComponent
   ]
 })
 export class DemoModule { }
