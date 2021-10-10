@@ -6,6 +6,7 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
 import { MomentComponent } from './moment/moment.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { IHashComponent } from './i-hash/i-hash.component';
+import { DateTestComponent } from './date-test/date-test.component';
 
 @NgModule({
   declarations: [
@@ -13,18 +14,20 @@ import { IHashComponent } from './i-hash/i-hash.component';
     DatePickerComponent,
     MomentComponent,
     CheckboxComponent,
-    IHashComponent
+    IHashComponent,
+    DateTestComponent
   ],
   imports: [
     CommonModule,
     CoreModule
   ],
-  exports:[
+  exports: [
     DateTimeComponent,
     DatePickerComponent,
     MomentComponent,
     CheckboxComponent,
-    IHashComponent
+    IHashComponent,
+    DateTestComponent
   ]
 })
 export class DemoModule { }
