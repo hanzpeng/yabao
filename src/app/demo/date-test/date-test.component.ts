@@ -8,14 +8,92 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 export class DateTestComponent implements AfterViewInit {
   @ViewChild("grid") grid: ElementRef;
   ngAfterViewInit() {
+    let now = new Date();
+    let tomorrow = new Date(now.valueOf() + 24*3600*1000);
+
     this.addRow(
-      "new Date()",
-      new Date()
+      "now",
+      "new Date()"
     );
 
     this.addRow(
-      "((new Date()).valueOf() + 24 * 3600 * 1000)",
-      new Date((new Date()).valueOf() + 24 * 3600 * 1000)
+      "tomorrow",
+      "new Date(now.valueOf() + 24*3600*1000)"
+    );
+
+    this.addRow(
+      "tomorrow",
+      tomorrow
+    );
+
+    this.addRow(
+      "now.toISOString()",
+      now.toISOString()
+    );
+
+    this.addRow(
+      `new Date(${now.toISOString()})`,
+      new Date(now.toISOString())
+    );
+
+    this.addRow(
+      "now.toUTCString()",
+      now.toUTCString()
+    );
+
+    this.addRow(
+      "now",
+      now
+    );
+
+    this.addRow(
+      "now.toString()",
+      now.toString()
+    );
+
+    this.addRow(
+      "now.toLocaleString()",
+      now.toLocaleString()
+    );
+
+    this.addRow(
+      "now.toLocaleDateString()",
+      now.toLocaleDateString()
+    );
+
+    this.addRow(
+      "now.toLocaleTimeString()",
+      now.toLocaleTimeString()
+    );
+
+    this.addRow(
+      'tomorrow.toLocaleString("en-US")',
+      tomorrow.toLocaleString("en-US")
+    );
+
+    this.addRow(
+      'tomorrow.toLocaleString("en-US",{timeZone: "America/Los_Angeles"})',
+      tomorrow.toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
+    );
+
+    this.addRow(
+      'tomorrow.toLocaleString("en-US",{timeZone: "America/New_York"})',
+      tomorrow.toLocaleString("en-US", {timeZone: "America/New_York"})
+    );
+
+    this.addRow(
+      'tomorrow.toLocaleString("en-AU")',
+      tomorrow.toLocaleString("en-AU")
+    );
+
+    this.addRow(
+      'tomorrow.toLocaleString("zh")',
+      tomorrow.toLocaleString("zh")
+    );
+
+    this.addRow(
+      "now.valueOf() + 24 * 3600 * 1000)",
+      now.valueOf() + 24 * 3600 * 1000
     );
 
     this.addRow(
@@ -26,6 +104,11 @@ export class DateTestComponent implements AfterViewInit {
     this.addRow(
       "new Date(2019, 0, 2, 11, 30, 25, 10)",
       new Date(2019, 0, 2, 11, 30, 25, 10)
+    );
+
+    this.addRow(
+      "JSON.stringify({mydate: tomorrow})",
+      JSON.stringify({mydate: tomorrow})
     );
   }
 
