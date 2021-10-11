@@ -1,0 +1,42 @@
+<h1>order-by-test</h1>
+
+<h2>nums1 | orderBy</h2>
+<span *ngFor="let item of nums1 | orderBy">
+  {{item}},
+</span>
+
+<h2>{{"nums2 | orderBy  : {direction: -1 }"}}</h2>
+<span *ngFor="let item of nums2 | orderBy: {direction: -1 }">
+  {{item}},
+</span>
+
+<h2>{{"dates1 | orderBy"}}</h2>
+<span *ngFor="let item of dates1 | orderBy">
+  {{item.toLocaleDateString()}},
+</span>
+
+<h2>{{"dates2 | orderBy  : { direction: -1 }"}}</h2>
+<span *ngFor="let item of dates2 | orderBy  : {direction: -1 }">
+  {{item.toLocaleDateString()}},
+</span>
+
+<h2>{{"dates3 | orderBy  : {direction: 1 }"}}</h2>
+<span *ngFor="let item of dates3 | orderBy  : {direction: 1 }">
+  {{item.toLocaleDateString()}},
+</span>
+
+<h2>{{"students2 | orderBy  : 'firstName'"}}</h2>
+<span *ngFor="let item of students1 | orderBy: 'firstName' ">
+  {{item.firstName}},
+</span>
+
+<h2>{{"students2 | orderBy  : {property: 'firstName'}"}}</h2>
+<span *ngFor="let item of students2 | orderBy  : {property: 'firstName'}">
+  {{item.firstName}},
+</span>
+
+<h2>{{"students3 | orderBy  : {property: 'firstName', direction: -1}"}}</h2>
+<span *ngFor="let item of students3 | orderBy  : {property: 'firstName', direction: -1 }">
+  {{item.firstName}},
+</span>
+

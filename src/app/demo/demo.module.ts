@@ -7,6 +7,7 @@ import { MomentComponent } from './moment/moment.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { IHashComponent } from './i-hash/i-hash.component';
 import { DateTestComponent } from './date-test/date-test.component';
+import { OrderByTestComponent } from './order-by-test/order-by-test.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DateTestComponent } from './date-test/date-test.component';
     MomentComponent,
     CheckboxComponent,
     IHashComponent,
-    DateTestComponent
+    DateTestComponent,
+    OrderByTestComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { DateTestComponent } from './date-test/date-test.component';
     MomentComponent,
     CheckboxComponent,
     IHashComponent,
-    DateTestComponent
+    DateTestComponent,
+    OrderByTestComponent
   ]
 })
 export class DemoModule { }

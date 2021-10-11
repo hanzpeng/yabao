@@ -15,6 +15,10 @@ h1 {
   margin-bottom: 20px !important;
 }
 
+h2, h3 {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
 .grid-2-column {
   display: grid;
   grid-template-columns: auto auto;

@@ -9,8 +9,18 @@ export class OrderByPipe implements PipeTransform {
         return OrderByPipe.compare(a, b);
       });
     }
-    if (typeof args === 'object') {
-      let dir = args.direction < 0 ? -1 : 1
+
+    else if (typeof args === 'string') {
+      return records.sort((a, b) => {
+        return OrderByPipe.compare(a[args], b[args]);
+      });
+    }
+
+    else if (typeof args === 'object') {
+      let dir = 1;
+      if(args["direction"]){
+        dir = <number>args["direction"] < 0 ? -1 : 1;
+      }
       if (args.property != null) {
         return records.sort((a, b) => {
           return dir * OrderByPipe.compare(a[args.property], b[args.property]);
@@ -21,10 +31,9 @@ export class OrderByPipe implements PipeTransform {
         });
       }
     }
-    if (typeof args === 'string') {
-      return records.sort((a, b) => {
-        return OrderByPipe.compare(a[args], b[args]);
-      });
+
+    else{
+      return records;
     }
   }
 

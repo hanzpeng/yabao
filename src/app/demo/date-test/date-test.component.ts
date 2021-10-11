@@ -8,20 +8,6 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 
 export class DateTestComponent implements AfterViewInit {
   @ViewChild("grid") grid: ElementRef;
-
-  day = 24*3600*1000;
-  current = new Date();
-  dateArray:Array<Date> = [
-    new Date(this.current.valueOf() + 5* this.day),
-    new Date(this.current.valueOf() + 3* this.day),
-    new Date(this.current.valueOf() + (-5)* this.day),
-    new Date(this.current.valueOf() + 1* this.day),
-    new Date(this.current.valueOf() + 2* this.day),
-    new Date(this.current.valueOf() + 6* this.day),
-  ];
-
-  nums = [6,4,2,0,1,2,3,5,7];
-
   ngAfterViewInit() {
     let now = new Date();
     let tomorrow = new Date(now.valueOf() + 24*3600*1000);
