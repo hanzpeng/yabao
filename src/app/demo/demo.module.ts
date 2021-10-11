@@ -8,6 +8,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { IHashComponent } from './i-hash/i-hash.component';
 import { DateTestComponent } from './date-test/date-test.component';
 import { OrderByTestComponent } from './order-by-test/order-by-test.component';
+import { EnumTestComponent } from './enum-test/enum-test.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { OrderByTestComponent } from './order-by-test/order-by-test.component';
     CheckboxComponent,
     IHashComponent,
     DateTestComponent,
-    OrderByTestComponent
+    OrderByTestComponent,
+    EnumTestComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { OrderByTestComponent } from './order-by-test/order-by-test.component';
     CheckboxComponent,
     IHashComponent,
     DateTestComponent,
-    OrderByTestComponent
+    OrderByTestComponent,
+    EnumTestComponent,
   ]
 })
 export class DemoModule { }
