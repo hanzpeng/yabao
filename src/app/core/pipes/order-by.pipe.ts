@@ -10,12 +10,6 @@ export class OrderByPipe implements PipeTransform {
       });
     }
 
-    else if (typeof args === 'string') {
-      return records.sort((a, b) => {
-        return OrderByPipe.compare(a[args], b[args]);
-      });
-    }
-
     else if (typeof args === 'object') {
       let dir = 1;
       if(args["direction"]){
@@ -31,6 +25,13 @@ export class OrderByPipe implements PipeTransform {
         });
       }
     }
+
+    else if (typeof args === 'string') {
+      return records.sort((a, b) => {
+        return OrderByPipe.compare(a[args], b[args]);
+      });
+    }
+
 
     else{
       return records;
