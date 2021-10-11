@@ -1,3 +1,16 @@
 <h1>DateTest</h1>
 <div #grid class="grid-2-column">
 </div>
+
+
+<div *ngFor="let dt of dateArray | orderBy: {direction: -1 }">
+  {{dt.toLocaleDateString()}}
+</div>
+
+<div *ngFor="let dt of nums | orderBy">
+  {{dt}}
+</div>
+
+<div *ngFor="let dt of nums | orderBy : {direction: -1 }">
+  {{dt}}
+</div>

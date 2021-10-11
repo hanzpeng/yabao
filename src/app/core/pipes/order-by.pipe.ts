@@ -1,24 +1,30 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Injectable, Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({
-  name: 'orderBy'
-})
+@Pipe({ name: 'orderBy' })
+@Injectable({ providedIn: 'root' })
 export class OrderByPipe implements PipeTransform {
   transform(records: Array<any>, args?: any): any {
-    if (typeof args === 'object') {
-
-      let dir = args.direction < 0 ? -1 : 1
-
+    if (args == null) {
       return records.sort((a, b) => {
-        return dir * OrderByPipe.compare(a[args.property], b[args.property]);
+        return OrderByPipe.compare(a, b);
       });
-
-    } else if (typeof args === 'string') {
+    }
+    if (typeof args === 'object') {
+      let dir = args.direction < 0 ? -1 : 1
+      if (args.property != null) {
+        return records.sort((a, b) => {
+          return dir * OrderByPipe.compare(a[args.property], b[args.property]);
+        });
+      } else {
+        return records.sort((a, b) => {
+          return dir * OrderByPipe.compare(a, b);
+        });
+      }
+    }
+    if (typeof args === 'string') {
       return records.sort((a, b) => {
         return OrderByPipe.compare(a[args], b[args]);
       });
-    } else {
-      return records;
     }
   }
 
@@ -28,10 +34,6 @@ export class OrderByPipe implements PipeTransform {
   static compare(a: number | string | object, b: number | string | object): number {
     if (typeof a === 'string' && typeof b === 'string') return a.localeCompare(b, undefined, { sensitivity: 'base' });
     if (typeof a === 'number' && typeof b === 'number') return a - b;
-    if (typeof a === 'object' && typeof b === 'object') {
-      if (a > b) return 1;
-      if (a == b) return 0;
-      if (a < b) return -1;
-    };
+    if (typeof a === 'object' && typeof b === 'object') return <number>a.valueOf() - <number>b.valueOf();
   }
 }
