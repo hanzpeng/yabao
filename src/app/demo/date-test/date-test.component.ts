@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
-
+import * as dayjs from 'dayjs';
 
 @Component({
   selector: 'app-date-test',
@@ -10,16 +10,23 @@ import {MatAccordion} from '@angular/material/expansion';
 
 export class DateTestComponent implements AfterViewInit {
   @ViewChild("grid") grid: ElementRef;
-  @ViewChild("grid") grid2: ElementRef;
+  @ViewChild("grid2") grid2: ElementRef;
   @ViewChild(MatAccordion) accordion: MatAccordion;
   addRow(label: string, value: any) {
     this.grid.nativeElement.innerHTML += `<div>${label}</div><div>${value}</div>`
   }
+  add2(label: string, value: any) {
+    this.grid2.nativeElement.innerHTML += `<div>${label}</div><div>${value}</div>`
+  }
   ngAfterViewInit() {
     this.nativeDateTest();
+    this.dayjsTest();
   }
 
   dayjsTest(){
+    let now = dayjs();
+    this.add2("dayjs()", dayjs());
+    this.add2("new Date()", new Date());
   }
 
   nativeDateTest() {
