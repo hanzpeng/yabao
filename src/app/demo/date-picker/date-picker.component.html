@@ -11,6 +11,37 @@
     <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
   <div>
-    {{localTime}}
+    {{localDate}}
   </div>
+
+  <div class="example-action-buttons">
+    <button mat-button (click)="accordion.openAll()">Expand All</button>
+    <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+  </div>
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Test A
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div #grida class="grid-2-column">
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Test B
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div #gridb class="grid-2-column">
+      </div>
+    </mat-expansion-panel>
+
+  </mat-accordion>
 </div>
