@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {MatAccordion} from '@angular/material/expansion';
+
 
 @Component({
   selector: 'app-date-test',
@@ -8,6 +10,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 
 export class DateTestComponent implements AfterViewInit {
   @ViewChild("grid") grid: ElementRef;
+  @ViewChild(MatAccordion) accordion: MatAccordion;
   ngAfterViewInit() {
     let now = new Date();
     let tomorrow = new Date(now.valueOf() + 24*3600*1000);
