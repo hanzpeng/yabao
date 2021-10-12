@@ -45,6 +45,8 @@ export class EnumTestComponent implements OnInit, AfterViewInit {
 
   displayContent() {
       this.addRow("RequestType.Permanent",RequestType.Permanent);
+      this.addRow("RequestType.Permanent.toString()",RequestType.Permanent.toString());
+      this.addRow("typeof RequestType.Permanent",typeof RequestType.Permanent);
       this.addRow('RequestType["Permanent"]',RequestType["Permanent"]);
       this.addRow('RequestType["Permanent"]',RequestType["Permanent"] === RequestType.Permanent);
       this.addRow('',this.toRequestType("Permanent"));
