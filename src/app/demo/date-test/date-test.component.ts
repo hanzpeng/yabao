@@ -2,6 +2,13 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import {MatAccordion} from '@angular/material/expansion';
 import * as dayjs from 'dayjs';
 import * as moment from 'moment'
+import * as utc from 'dayjs/plugin/utc';
+import * as timezone from 'dayjs/plugin/timezone'
+import { DayjsTimezone } from 'dayjs';
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
 
 @Component({
   selector: 'app-date-test',
@@ -31,6 +38,9 @@ export class DateTestComponent implements AfterViewInit {
 
     this.add2("new Date()", new Date());
     this.add2("moment()", moment());
+
+    this.add2("moment.utc(moment().startOf('day')).format()", moment.utc(moment().startOf('day')).format());
+    this.add2("dayjs.utc(dayjs().startOf('day')).format()", dayjs.utc(dayjs().startOf('day')).format());
 
   }
 
