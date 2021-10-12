@@ -36,8 +36,9 @@ export class DateTestComponent implements AfterViewInit {
     this.add2("dayjs()", dayjs());
     this.add2("dayjs().format()", dayjs().format());
 
-    this.add2("new Date()", new Date());
-    this.add2("moment()", moment());
+    this.add2("new Date().toUTCString()", new Date().toUTCString());
+    this.add2("moment().utc", moment().utc());
+    this.add2("dayjs().utc", dayjs().utc());
 
     this.add2("moment.utc(moment().startOf('day')).format()", moment.utc(moment().startOf('day')).format());
     this.add2("dayjs.utc(dayjs().startOf('day')).format()", dayjs.utc(dayjs().startOf('day')).format());
