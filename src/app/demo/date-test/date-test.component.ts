@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
 import * as dayjs from 'dayjs';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-date-test',
@@ -26,7 +27,11 @@ export class DateTestComponent implements AfterViewInit {
   dayjsTest(){
     let now = dayjs();
     this.add2("dayjs()", dayjs());
+    this.add2("dayjs().format()", dayjs().format());
+
     this.add2("new Date()", new Date());
+    this.add2("moment()", moment());
+
   }
 
   nativeDateTest() {
