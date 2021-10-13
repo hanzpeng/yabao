@@ -1,5 +1,5 @@
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 export class DateTimeControls {
@@ -7,7 +7,6 @@ export class DateTimeControls {
   dateLocal = new FormControl();
   timeLocal = new FormControl();
 }
-
 const MiniSecondsInOneYear = 365 * 24 * 3600 * 1000;
 
 @Component({
@@ -20,14 +19,16 @@ export class DateTimePickerComponent implements OnInit, OnDestroy {
     protected formBuilder: FormBuilder,
   ) { }
 
-  ariaLabelStartDate: string;
-  ariaLabelStartTime: string;
+  labelDate: string = "Date";
+  labelTime: string = "Time";
+  ariaLabelDate: string = "Date";
+  ariaLabelTime: string = "Time";
 
   public formGroup: FormGroup;
   public formControls = new DateTimeControls();
   public dateLimits = {
-    startDateMin: new Date(0),
-    startDateMax: new Date(100 * MiniSecondsInOneYear),
+    dateMin: new Date(0),
+    dateMax: new Date(100 * MiniSecondsInOneYear),
   };
   valueChangeSubscriptions = new Array<Subscription>();
   ngOnInit(): void {
@@ -64,7 +65,6 @@ export class DateTimePickerComponent implements OnInit, OnDestroy {
       this.valueChangeSubscriptions.push(subscription);
     });
   };
-
   private combineDateAndTime(date: Date, time: string): Date {
     let colonIndex: number = time ? time.indexOf(':') : -1;
     if (colonIndex > -1) {

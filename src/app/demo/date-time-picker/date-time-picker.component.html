@@ -1,19 +1,15 @@
 <form class="main-form" [formGroup]="formGroup">
   <mat-form-field>
-    <mat-label>Start Date</mat-label>
-    <input [formControl]="formControls.dateLocal" matInput [matDatepicker]="startedAtPicker"
-      [min]="dateLimits.startDateMin"
-      [max]="dateLimits.startDateMax" [attr.aria-label]="ariaLabelStartDate">
-    <mat-datepicker-toggle matSuffix [for]="startedAtPicker">
+    <mat-label>{{labelDate}}</mat-label>
+    <input [formControl]="formControls.dateLocal" matInput [matDatepicker]="datePicker" [min]="dateLimits.dateMin"
+      [max]="dateLimits.dateMax" [attr.aria-label]="ariaLabelDate">
+    <mat-datepicker-toggle matSuffix [for]="datePicker">
     </mat-datepicker-toggle>
-    <mat-datepicker #startedAtPicker></mat-datepicker>
+    <mat-datepicker #datePicker></mat-datepicker>
   </mat-form-field>
-
   <mat-form-field>
-    <mat-label>Start Time</mat-label>
-    <input [formControl]="formControls.timeLocal" matInput type="time"
-      placeholder="Enter time of day to start the request"
-      [attr.aria-label]="ariaLabelStartTime">
+    <mat-label>{{labelTime}}</mat-label>
+    <input [formControl]="formControls.timeLocal" matInput type="time" [attr.aria-label]="ariaLabelTime">
   </mat-form-field>
 </form>
 <div>{{formControls?.dateTimeLocal.value}}</div>
