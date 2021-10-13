@@ -98,7 +98,7 @@ export class DateTimePickerComponent implements OnInit, OnDestroy, ControlValueA
 
   private updateDateValue(date: Date) {
     this.formControls.dateLocal.setValue(dayjs(date).startOf('day').toDate());
-    this.formControls.timeLocal.setValue(date.getHours()+":"+date.getMinutes());
+    this.formControls.timeLocal.setValue(dayjs(date).format("hh:mm"));
     this.onChange(date);
     this.markAsTouched();
   }
