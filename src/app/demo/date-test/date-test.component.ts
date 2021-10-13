@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
 import * as dayjs from 'dayjs';
@@ -16,7 +17,8 @@ dayjs.extend(timezone)
   styleUrls: ['./date-test.component.scss']
 })
 
-export class DateTestComponent implements AfterViewInit {
+export class DateTestComponent implements OnInit, AfterViewInit {
+  currentDateCtrl = new FormControl();
   @ViewChild("grid") grid: ElementRef;
   @ViewChild("grid2") grid2: ElementRef;
   @ViewChild(MatAccordion) accordion: MatAccordion;
@@ -25,6 +27,9 @@ export class DateTestComponent implements AfterViewInit {
   }
   add2(label: string, value: any) {
     this.grid2.nativeElement.innerHTML += `<div>${label}</div><div>${value}</div>`
+  }
+  ngOnInit(){
+    this.currentDateCtrl.setValue(new Date());
   }
   ngAfterViewInit() {
     this.nativeDateTest();
@@ -35,6 +40,16 @@ export class DateTestComponent implements AfterViewInit {
     let now = dayjs();
     this.add2("dayjs()", dayjs());
     this.add2("dayjs().format()", dayjs().format());
+    let x = dayjs("2021-10-13T23:10:25-07:00").toDate();
+    this.add2("2021-10-13T00:10:25-07:00", x);
+    this.add2("hours", x.getHours());
+
+    this.add2("start of day", dayjs().startOf('day').toDate());
+
+
+    this.add2("hours", new Date().getHours());
+
+    this.add2("minutes", new Date().getMinutes());
 
     this.add2("new Date().toUTCString()", new Date().toUTCString());
     this.add2("moment().utc", moment().utc());

@@ -1,6 +1,12 @@
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import * as dayjs from 'dayjs';
+import * as moment from 'moment'
+import * as utc from 'dayjs/plugin/utc';
+import * as timezone from 'dayjs/plugin/timezone'
+import { DayjsTimezone } from 'dayjs';
+
 
 export class DateTimeControls {
   dateTimeLocal = new FormControl();
@@ -12,18 +18,32 @@ const MiniSecondsInOneYear = 365 * 24 * 3600 * 1000;
 @Component({
   selector: 'app-date-time-picker',
   templateUrl: './date-time-picker.component.html',
-  styleUrls: ['./date-time-picker.component.scss']
+  styleUrls: ['./date-time-picker.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: DateTimePickerComponent
+    },
+    {
+      provide: NG_VALIDATORS,
+      multi: true,
+      useExisting: DateTimePickerComponent
+    }]
+
 })
-export class DateTimePickerComponent implements OnInit, OnDestroy {
+export class DateTimePickerComponent implements OnInit, OnDestroy, ControlValueAccessor, Validator {
   constructor(
     protected formBuilder: FormBuilder,
   ) { }
 
-  labelDate: string = "Date";
-  labelTime: string = "Time";
-  ariaLabelDate: string = "Date";
-  ariaLabelTime: string = "Time";
-
+  @Input() labelDate: string = "Date";
+  @Input() labelTime: string = "Time";
+  @Input() ariaLabelDate: string = "Date";
+  @Input() ariaLabelTime: string = "Time";
+  private touched = false;
+  public  isDisabled = false;
+  public dateTimeValue: Date;
   public formGroup: FormGroup;
   public formControls = new DateTimeControls();
   public dateLimits = {
@@ -75,4 +95,53 @@ export class DateTimePickerComponent implements OnInit, OnDestroy {
     }
     return date;
   }
+
+  private updateDateValue(date: Date) {
+    this.formControls.dateLocal.setValue(dayjs(date).startOf('day').toDate());
+    this.formControls.timeLocal.setValue(date.getHours()+":"+date.getMinutes());
+    this.onChange(date);
+    this.markAsTouched();
+  }
+  //#endregion
+
+  //#region ControlValueAccessor Interface
+  // ControlValueAccessor:writeValue
+  public writeValue(date: Date) {
+    this.updateDateValue(date);
+  }
+
+  // ControlValueAccessor:registerOnChange
+  public registerOnChange(fn: any) {
+    this.onChange = fn;
+  }
+
+  // ControlValueAccessor:registerOnTouched
+  public markAsTouched() {
+    if (!this.touched) {
+      this.onTouched();
+      this.touched = true;
+    }
+  }
+
+  // ControlValueAccessor:registerOnTouched
+  public registerOnTouched(fn: any) {
+    this.onTouched = fn;
+  }
+
+  // ControlValueAccessor:setDisabledState
+  public setDisabledState?(isDisabled: boolean) {
+    this.isDisabled = isDisabled;
+  }
+
+  private onChange(date: Date) { };
+
+  private onTouched() { };
+  //#endregion
+
+  //#region Validator Interface
+  // Validator:validate
+  public validate(control: AbstractControl): ValidationErrors {
+    return null;
+  }
+  //#endregion
 }
