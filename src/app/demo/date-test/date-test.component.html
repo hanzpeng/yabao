@@ -37,5 +37,7 @@
 [ariaLabelDate]="null"
 [ariaLabelTime]="null"
 [disabled]="false"
+(dateTimeChange)="dateTimeChange($event)"
 [formControl]="currentDateCtrl">
 </app-date-time-picker>
+{{currentDateValue}}

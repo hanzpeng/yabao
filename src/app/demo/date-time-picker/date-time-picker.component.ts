@@ -1,5 +1,6 @@
+import { SelectionChange } from '@angular/cdk/collections';
 import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import * as dayjs from 'dayjs';
 import * as moment from 'moment'
@@ -42,8 +43,9 @@ export class DateTimePickerComponent implements OnInit, OnDestroy, ControlValueA
   @Input() ariaLabelDate: string = null;
   @Input() ariaLabelTime: string = null;
   @Input() disabled: boolean = false;
+  @Output() dateTimeChange: EventEmitter<Date> = new EventEmitter<Date>();
   private touched = false;
-  public  isDisabled = false;
+  public isDisabled = false;
   public dateTimeValue: Date;
   public formGroup: FormGroup;
   public formControls = new DateTimeControls();
@@ -81,6 +83,10 @@ export class DateTimePickerComponent implements OnInit, OnDestroy, ControlValueA
           this.combineDateAndTime(date, time);
           this.formControls?.dateTimeLocal.markAsTouched();
           this.formControls?.dateTimeLocal.setValue(date);
+          if (dayjs(date).isValid()) {
+            console.log(date);
+            this.dateTimeChange.emit(date);
+          }
         }
       });
       this.valueChangeSubscriptions.push(subscription);

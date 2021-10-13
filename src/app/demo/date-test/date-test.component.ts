@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import {MatAccordion} from '@angular/material/expansion';
+import { MatAccordion } from '@angular/material/expansion';
 import * as dayjs from 'dayjs';
 import * as moment from 'moment'
 import * as utc from 'dayjs/plugin/utc';
@@ -19,6 +19,7 @@ dayjs.extend(timezone)
 
 export class DateTestComponent implements OnInit, AfterViewInit {
   currentDateCtrl = new FormControl();
+  currentDateValue: Date;
   @ViewChild("grid") grid: ElementRef;
   @ViewChild("grid2") grid2: ElementRef;
   @ViewChild(MatAccordion) accordion: MatAccordion;
@@ -28,15 +29,22 @@ export class DateTestComponent implements OnInit, AfterViewInit {
   add2(label: string, value: any) {
     this.grid2.nativeElement.innerHTML += `<div>${label}</div><div>${value}</div>`
   }
-  ngOnInit(){
-    this.currentDateCtrl.setValue(new Date());
+  ngOnInit() {
+    let now = new Date();
+    this.currentDateValue = now;
+    this.currentDateCtrl.setValue(now);
   }
   ngAfterViewInit() {
     this.nativeDateTest();
     this.dayjsTest();
   }
 
-  dayjsTest(){
+  dateTimeChange(newDate: Date) {
+    console.log("dateChange: "+ newDate)
+    this.currentDateValue = newDate;
+  }
+
+  dayjsTest() {
     let now = dayjs();
     this.add2("dayjs()", dayjs());
     this.add2("dayjs().format()", dayjs().format());
@@ -62,7 +70,7 @@ export class DateTestComponent implements OnInit, AfterViewInit {
 
   nativeDateTest() {
     let now = new Date();
-    let tomorrow = new Date(now.valueOf() + 24*3600*1000);
+    let tomorrow = new Date(now.valueOf() + 24 * 3600 * 1000);
 
     this.addRow(
       "now",
@@ -126,12 +134,12 @@ export class DateTestComponent implements OnInit, AfterViewInit {
 
     this.addRow(
       'tomorrow.toLocaleString("en-US",{timeZone: "America/Los_Angeles"})',
-      tomorrow.toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
+      tomorrow.toLocaleString("en-US", { timeZone: "America/Los_Angeles" })
     );
 
     this.addRow(
       'tomorrow.toLocaleString("en-US",{timeZone: "America/New_York"})',
-      tomorrow.toLocaleString("en-US", {timeZone: "America/New_York"})
+      tomorrow.toLocaleString("en-US", { timeZone: "America/New_York" })
     );
 
     this.addRow(
@@ -161,7 +169,7 @@ export class DateTestComponent implements OnInit, AfterViewInit {
 
     this.addRow(
       "JSON.stringify({mydate: tomorrow})",
-      JSON.stringify({mydate: tomorrow})
+      JSON.stringify({ mydate: tomorrow })
     );
 
     this.addRow(
