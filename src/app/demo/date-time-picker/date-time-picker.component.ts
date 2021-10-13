@@ -37,10 +37,11 @@ export class DateTimePickerComponent implements OnInit, OnDestroy, ControlValueA
     protected formBuilder: FormBuilder,
   ) { }
 
-  @Input() labelDate: string = "Date";
-  @Input() labelTime: string = "Time";
-  @Input() ariaLabelDate: string = "Date";
-  @Input() ariaLabelTime: string = "Time";
+  @Input() labelDate: string = null;
+  @Input() labelTime: string = null;
+  @Input() ariaLabelDate: string = null;
+  @Input() ariaLabelTime: string = null;
+  @Input() disabled: boolean = false;
   private touched = false;
   public  isDisabled = false;
   public dateTimeValue: Date;
