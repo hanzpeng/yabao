@@ -2,7 +2,7 @@
   <mat-form-field>
     <mat-label>Start Date</mat-label>
     <input [formControl]="formControls.startedAtDateLocal" matInput [matDatepicker]="startedAtPicker"
-      [required]="formControls.startedAtDateLocal.errors?.required" [min]="dateLimits.startDateMin"
+      [min]="dateLimits.startDateMin"
       [max]="dateLimits.startDateMax" [attr.aria-label]="ariaLabelStartDate">
     <mat-datepicker-toggle matSuffix [for]="startedAtPicker">
     </mat-datepicker-toggle>
