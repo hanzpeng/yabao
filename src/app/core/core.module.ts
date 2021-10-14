@@ -8,29 +8,38 @@ import { MaterialModule } from './modules/material.module';
 import { NgxModule } from './modules/ngx.module';
 import { CustomMatTableComponent } from './components/custom-mat-table/custom-mat-table.component';
 import { OrderByPipe } from './pipes/order-by.pipe';
+import { DateTimePickerComponent } from './components/date-time-picker/date-time-picker.component';
+
 
 
 @NgModule({
   declarations: [
     CustomMatTableComponent,
-    OrderByPipe
+    OrderByPipe,
+    DateTimePickerComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
-    MaterialModule,
-    NgxModule
-  ],
-  exports: [
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    CustomMatTableComponent,
-    HttpClientModule,
     MaterialModule,
     NgxModule,
-    OrderByPipe
+  ],
+  exports: [
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    NgxModule,
+
+    CustomMatTableComponent,
+    OrderByPipe,
+    DateTimePickerComponent
   ]
 })
 export class CoreModule { }

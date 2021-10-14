@@ -17,7 +17,7 @@ export class DateTimeControls {
 const MiniSecondsInOneYear = 365 * 24 * 3600 * 1000;
 
 @Component({
-  selector: 'app-date-time-picker',
+  selector: 'date-time-picker',
   templateUrl: './date-time-picker.component.html',
   styleUrls: ['./date-time-picker.component.scss'],
   providers: [

@@ -31,7 +31,7 @@
 
 </mat-accordion>
 
-<app-date-time-picker
+<date-time-picker
 [labelDate]="null"
 [labelTime]="null"
 [ariaLabelDate]="null"
@@ -39,5 +39,5 @@
 [disabled]="false"
 (dateTimeChange)="dateTimeChange($event)"
 [formControl]="currentDateCtrl">
-</app-date-time-picker>
+</date-time-picker>
 {{currentDateValue}}

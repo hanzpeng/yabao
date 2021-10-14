@@ -9,7 +9,6 @@ import { IHashComponent } from './i-hash/i-hash.component';
 import { DateTestComponent } from './date-test/date-test.component';
 import { OrderByTestComponent } from './order-by-test/order-by-test.component';
 import { EnumTestComponent } from './enum-test/enum-test.component';
-import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,7 @@ import { DateTimePickerComponent } from './date-time-picker/date-time-picker.com
     IHashComponent,
     DateTestComponent,
     OrderByTestComponent,
-    EnumTestComponent,
-    DateTimePickerComponent
+    EnumTestComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +34,6 @@ import { DateTimePickerComponent } from './date-time-picker/date-time-picker.com
     DateTestComponent,
     OrderByTestComponent,
     EnumTestComponent,
-    DateTimePickerComponent,
   ]
 })
 export class DemoModule { }
