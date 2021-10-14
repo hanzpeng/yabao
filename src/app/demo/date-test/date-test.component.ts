@@ -1,4 +1,3 @@
-import { FormControl } from '@angular/forms';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
 import * as dayjs from 'dayjs';
@@ -18,8 +17,6 @@ dayjs.extend(timezone)
 })
 
 export class DateTestComponent implements OnInit, AfterViewInit {
-  currentDateCtrl = new FormControl();
-  currentDateValue: Date;
   @ViewChild("grid") grid: ElementRef;
   @ViewChild("grid2") grid2: ElementRef;
   @ViewChild(MatAccordion) accordion: MatAccordion;
@@ -30,18 +27,10 @@ export class DateTestComponent implements OnInit, AfterViewInit {
     this.grid2.nativeElement.innerHTML += `<div>${label}</div><div>${value}</div>`
   }
   ngOnInit() {
-    let now = new Date();
-    this.currentDateValue = now;
-    this.currentDateCtrl.setValue(now);
   }
   ngAfterViewInit() {
     this.nativeDateTest();
     this.dayjsTest();
-  }
-
-  dateTimeChange(newDate: Date) {
-    console.log("dateChange: "+ newDate)
-    this.currentDateValue = newDate;
   }
 
   dayjsTest() {
