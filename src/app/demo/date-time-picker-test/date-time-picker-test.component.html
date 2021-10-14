@@ -1,1 +1,11 @@
-<p>date-time-picker-test works!</p>
+<h1>date-time-picker-test works!</h1>
+<date-time-picker
+[labelDate]="null"
+[labelTime]="null"
+[ariaLabelDate]="null"
+[ariaLabelTime]="null"
+[disabled]="false"
+(dateTimeChange)="dateTimeChange($event)"
+[formControl]="currentDateCtrl">
+</date-time-picker>
+{{currentDateValue}}
