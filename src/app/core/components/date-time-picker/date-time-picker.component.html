@@ -1,5 +1,5 @@
 <form [formGroup]="formGroup" style="width:100%;margin:0px;padding:0px">
-  <div class="grid-2-columns">
+  <div [ngClass]="allowBreak ? 'grid-auto-columns' : 'grid-2-columns'">
     <div>
       <mat-form-field style="width:100%">
         <mat-label>{{labelDate}}</mat-label>

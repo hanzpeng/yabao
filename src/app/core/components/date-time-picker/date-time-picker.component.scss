@@ -1,3 +1,4 @@
+.grid-auto-columns,
 .grid-2-columns {
   display: grid;
   grid-template-columns: auto auto;
@@ -6,7 +7,7 @@
   width: stretch;
 }
 @media (max-width: 1500px){
-  .grid-2-columns {
+  .grid-auto-columns {
     grid-template-columns: auto;
   }
 }

@@ -1,5 +1,6 @@
 <h1>date-time-picker-test works!</h1>
 <date-time-picker
+[allowBreak]="true"
 [labelDate]="null"
 [labelTime]="null"
 [ariaLabelDate]="null"
@@ -9,3 +10,17 @@
 [formControl]="currentDateCtrl">
 </date-time-picker>
 {{currentDateValue}}
+
+<h1>date-time-picker-test works!</h1>
+<date-time-picker
+[allowBreak]="false"
+[labelDate]="null"
+[labelTime]="null"
+[ariaLabelDate]="null"
+[ariaLabelTime]="null"
+[disabled]="false"
+(dateTimeChange)="dateTimeChange($event)"
+[formControl]="currentDateCtrl">
+</date-time-picker>
+{{currentDateValue}}
+
