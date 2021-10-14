@@ -1,0 +1,12 @@
+.grid-2-columns {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-row-gap: 1pt;
+  grid-column-gap: 1pt;
+  width: stretch;
+}
+@media (max-width: 1500px){
+  .grid-2-columns {
+    grid-template-columns: auto;
+  }
+}

@@ -1,15 +1,20 @@
-<form class="main-form" [formGroup]="formGroup">
-  <mat-form-field>
-    <mat-label>{{labelDate}}</mat-label>
-    <input [formControl]="formControls.dateLocal" matInput [matDatepicker]="datePicker" [min]="dateLimits.dateMin"
-      [max]="dateLimits.dateMax" [attr.aria-label]="ariaLabelDate" [disabled]="disabled">
-    <mat-datepicker-toggle matSuffix [for]="datePicker">
-    </mat-datepicker-toggle>
-    <mat-datepicker #datePicker></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>{{labelTime}}</mat-label>
-    <input [formControl]="formControls.timeLocal" matInput type="time" [readonly]="disabled" [attr.aria-label]="ariaLabelTime">
-  </mat-form-field>
+<form [formGroup]="formGroup" style="width:100%;margin:0px;padding:0px">
+  <div class="grid-2-columns">
+    <div>
+      <mat-form-field style="width:100%">
+        <mat-label>{{labelDate}}</mat-label>
+        <input [formControl]="formControls.dateLocal" matInput [matDatepicker]="datePicker" [min]="dateLimits.dateMin"
+               [max]="dateLimits.dateMax" [attr.aria-label]="ariaLabelDate" [disabled]="disabled">
+        <mat-datepicker-toggle matSuffix [for]="datePicker">
+        </mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field style="width:100%">
+        <mat-label>{{labelTime}}</mat-label>
+        <input [formControl]="formControls.timeLocal" matInput type="time" [readonly]="disabled" [attr.aria-label]="ariaLabelTime">
+      </mat-form-field>
+    </div>
+  </div>
 </form>
-<div>{{formControls?.dateTimeLocal.value}}</div>
