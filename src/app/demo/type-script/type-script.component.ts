@@ -9,7 +9,7 @@ export class TypeScriptComponent implements OnInit, AfterViewInit {
   constructor() { }
   ngOnInit(): void {
   }
-  ngAfterViewInit():void{
+  ngAfterViewInit(): void {
     this.tests();
   }
   @ViewChild("grid") grid: ElementRef;
@@ -18,6 +18,18 @@ export class TypeScriptComponent implements OnInit, AfterViewInit {
   }
   tests() {
     this.addRow("expression", "value");
+    this.getSafetyOrientationStatus("MWH","hanz", new Date());
+    this.getSafetyOrientationStatus("MWH","hanz");
+    let name;
+    this.getSafetyOrientationStatus("MWH",name);
   }
 
+  getSafetyOrientationStatus(datacenterId: string, userId: string, endedAt?: Date): void {
+    const searchQueryParams = {
+      datacenterId: datacenterId || null,
+      userId: userId || null,
+      endedAt: endedAt || null
+    };
+    this.addRow(`datacenterId: ${datacenterId}, userId: ${userId}, endedAt: ${ endedAt }`, JSON.stringify(searchQueryParams));
+  }
 }
