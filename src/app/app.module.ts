@@ -5,8 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { StudentModule} from './student/student.module';
 import { DemoModule} from './demo/demo.module';
-import { CoreModule } from './core/core.module';
-
 
 @NgModule({
   declarations: [

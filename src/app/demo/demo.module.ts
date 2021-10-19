@@ -10,6 +10,8 @@ import { DateTestComponent } from './date-test/date-test.component';
 import { OrderByTestComponent } from './order-by-test/order-by-test.component';
 import { EnumTestComponent } from './enum-test/enum-test.component';
 import { DateTimePickerTestComponent } from './date-time-picker-test/date-time-picker-test.component';
+import { TypeScriptComponent } from './type-script/type-script.component';
+import { DemoComponent } from './demo/demo.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { DateTimePickerTestComponent } from './date-time-picker-test/date-time-p
     OrderByTestComponent,
     EnumTestComponent,
     DateTimePickerTestComponent,
+    TypeScriptComponent,
+    DemoComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +41,7 @@ import { DateTimePickerTestComponent } from './date-time-picker-test/date-time-p
     OrderByTestComponent,
     EnumTestComponent,
     DateTimePickerTestComponent,
+    DemoComponent,
   ]
 })
 export class DemoModule { }
