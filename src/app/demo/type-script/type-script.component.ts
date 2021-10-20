@@ -1,5 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 
+enum Color{
+  Red,
+  Green,
+  Blue,
+}
+
 @Component({
   selector: 'app-type-script',
   templateUrl: './type-script.component.html',
@@ -10,14 +16,28 @@ export class TypeScriptComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
-    this.tests();
+    this.testsEnumConversion();
   }
   @ViewChild("grid") grid: ElementRef;
   addRow(label: string, value: any) {
     this.grid.nativeElement.innerHTML += `<div>${label}</div><div>${value}</div>`
   }
-  tests() {
-    this.addRow("expression", "value");
+
+  testsEnumConversion() {
+    const red = Color.Red;
+    this.addRow("Color.Red",Color.Red);
+    this.addRow("Color.Green",Color.Green);
+    this.addRow("Color.Blue",Color.Blue);
+    this.addRow("Color['Red']", Color['Red']);
+    this.addRow("Color['Blue']", Color['Blue']);
+    this.addRow("Color[Color.Blue]", Color[Color.Blue]);
+    this.addRow("Color[2]", Color[2]);
+    this.addRow("Color.Blue", Color.Blue);
+  }
+
+  testAsignWithOr(){
+    //Test ||
+    this.addRow("||", "");
     this.getSafetyOrientationStatus("MWH","hanz", new Date());
     this.getSafetyOrientationStatus("MWH","hanz");
     let name;
@@ -32,4 +52,6 @@ export class TypeScriptComponent implements OnInit, AfterViewInit {
     };
     this.addRow(`datacenterId: ${datacenterId}, userId: ${userId}, endedAt: ${ endedAt }`, JSON.stringify(searchQueryParams));
   }
+
+
 }
