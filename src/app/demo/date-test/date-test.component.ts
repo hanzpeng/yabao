@@ -36,6 +36,7 @@ export class DateTestComponent implements OnInit, AfterViewInit {
   dayjsTest() {
     let now = dayjs();
     this.add2("dayjs()", dayjs());
+    this.add2("dayjs().utc()", dayjs().utc());
     this.add2("dayjs().format()", dayjs().format());
     let x = dayjs("2021-10-13T23:10:25-07:00").toDate();
     this.add2("2021-10-13T00:10:25-07:00", x);
