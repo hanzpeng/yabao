@@ -34,8 +34,30 @@ export class DateTestComponent implements OnInit, AfterViewInit {
   }
 
   dayjsTest() {
+    let present = new Date();
+    this.add2("now", present);
+    this.add2("new Date(now.toString())", new Date(present.toString()));
+
+    this.add2("(new Date('2021-10-12T05:05:15.027Z'))",(new Date('2021-10-12T05:05:15.027Z')));
+    this.add2("(new Date('2021-10-12T05:05:15.027Z'.toString()))",(new Date('2021-10-12T05:05:15.027Z'.toString())));
+
+    this.add2("new Date(present.toString()).valueOf()",new Date(present.toString()).valueOf())
+
+
     let now = dayjs();
+
     this.add2("dayjs()", dayjs());
+    dayjs(now).endOf('day').toDate().valueOf()
+    this.add2("dayjs(now)", dayjs(now));
+    this.add2("dayjs(now).endOf('day')", dayjs(now).endOf('day'));
+    this.add2("dayjs(now).endOf('day')", dayjs(now).endOf('day'));
+    this.add2("dayjs(this.now).endOf('day').toDate().valueOf()", dayjs(now).endOf('day').toDate().valueOf());
+    this.add2("dayjs(this.now).endOf('day').toDate().valueOf()", dayjs(now).endOf('day').toDate().valueOf());
+    this.add2("dayjs(this.now).endOf('day').toDate().valueOf()", dayjs(now).endOf('day').toDate().valueOf());
+
+    this.add2("(new Date('2021-10-12T05:05:15.027Z')).valueOf()",(new Date('2021-10-12T05:05:15.027Z')).valueOf());
+    this.add2("(new Date('2021-10-12T05:05:15.027Z'))",(new Date('2021-10-12T05:05:15.027Z')));
+
     this.add2("dayjs().utc()", dayjs().utc());
     this.add2("dayjs().format()", dayjs().format());
     let x = dayjs("2021-10-13T23:10:25-07:00").toDate();
