@@ -45,6 +45,10 @@ export class DateTestComponent implements OnInit, AfterViewInit {
 
 
     let now = dayjs();
+    this.add2("dayjs()", dayjs().format("ddd MMMM D YYYY, h:mm A"));
+    this.add2("TZ", dayjs().format("ddd MMMM D YYYY, h:mm A"));
+    this.add2("test1", dayjs().second(0).tz("Pacific/Auckland").format("ddd MMMM D YYYY, h:mm A"));
+    this.add2("test2", dayjs().tz("Pacific/Auckland").format("ddd MMMM D YYYY, h:mm A"));
 
     this.add2("dayjs()", dayjs());
     dayjs(now).endOf('day').toDate().valueOf()
