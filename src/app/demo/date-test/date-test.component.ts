@@ -35,8 +35,11 @@ export class DateTestComponent implements OnInit, AfterViewInit {
 
   dayjsTest() {
     let present = new Date();
-    this.add2("now", present);
-    this.add2("new Date(now.toString())", new Date(present.toString()));
+    this.add2("present", present);
+    this.add2("present", dayjs.utc(present));
+    this.add2("dayjs.utc(present).add(2*24, 'hours')", dayjs.utc(present).add(2*24, 'hours'));
+    this.add2("new Date(present.toString())", new Date(present.toString()));
+
 
     this.add2("(new Date('2021-10-12T05:05:15.027Z'))",(new Date('2021-10-12T05:05:15.027Z')));
     this.add2("(new Date('2021-10-12T05:05:15.027Z'.toString()))",(new Date('2021-10-12T05:05:15.027Z'.toString())));
@@ -45,6 +48,8 @@ export class DateTestComponent implements OnInit, AfterViewInit {
 
 
     let now = dayjs();
+
+
     this.add2("dayjs()", dayjs().format("ddd MMMM D YYYY, h:mm A"));
     this.add2("TZ", dayjs().format("ddd MMMM D YYYY, h:mm A"));
     this.add2("test1", dayjs().second(0).tz("Pacific/Auckland").format("ddd MMMM D YYYY, h:mm A"));

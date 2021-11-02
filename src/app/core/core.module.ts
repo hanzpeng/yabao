@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { DateTimePickerComponent } from './components/date-time-picker/date-time
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
+    RouterModule,
     BrowserAnimationsModule,
     MaterialModule,
     NgxModule,
@@ -34,9 +36,9 @@ import { DateTimePickerComponent } from './components/date-time-picker/date-time
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
+    RouterModule,
     MaterialModule,
     NgxModule,
-
     CustomMatTableComponent,
     OrderByPipe,
     DateTimePickerComponent
