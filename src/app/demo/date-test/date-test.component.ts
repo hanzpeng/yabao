@@ -37,14 +37,24 @@ export class DateTestComponent implements OnInit, AfterViewInit {
     let present = new Date();
     this.add2("present", present);
     this.add2("present", dayjs.utc(present));
-    this.add2("dayjs.utc(present).add(2*24, 'hours')", dayjs.utc(present).add(2*24, 'hours'));
+    this.add2("dayjs.utc(present).add(2*24, 'hours')", dayjs.utc(present).add(2 * 24, 'hours'));
+    const dayjsPresent = dayjs.utc(present);
+    const twodayslater = dayjs.utc(present).add(2 * 24, 'hours');
+    this.add2("dayjsPresent", dayjsPresent);
+    this.add2("twodayslater", twodayslater);
+    this.add2(" twodayslater.diff(dayjsPresent)", twodayslater.diff(dayjsPresent));
+    this.add2(" twodayslater.diff(dayjsPresent,'days')", twodayslater.diff(dayjsPresent,'days'));
+    this.add2(" twodayslater.diff(dayjsPresent,'hours')", twodayslater.diff(dayjsPresent,'hours'));
+
+
     this.add2("new Date(present.toString())", new Date(present.toString()));
 
 
-    this.add2("(new Date('2021-10-12T05:05:15.027Z'))",(new Date('2021-10-12T05:05:15.027Z')));
-    this.add2("(new Date('2021-10-12T05:05:15.027Z'.toString()))",(new Date('2021-10-12T05:05:15.027Z'.toString())));
 
-    this.add2("new Date(present.toString()).valueOf()",new Date(present.toString()).valueOf())
+    this.add2("(new Date('2021-10-12T05:05:15.027Z'))", (new Date('2021-10-12T05:05:15.027Z')));
+    this.add2("(new Date('2021-10-12T05:05:15.027Z'.toString()))", (new Date('2021-10-12T05:05:15.027Z'.toString())));
+
+    this.add2("new Date(present.toString()).valueOf()", new Date(present.toString()).valueOf())
 
 
     let now = dayjs();
@@ -64,8 +74,8 @@ export class DateTestComponent implements OnInit, AfterViewInit {
     this.add2("dayjs(this.now).endOf('day').toDate().valueOf()", dayjs(now).endOf('day').toDate().valueOf());
     this.add2("dayjs(this.now).endOf('day').toDate().valueOf()", dayjs(now).endOf('day').toDate().valueOf());
 
-    this.add2("(new Date('2021-10-12T05:05:15.027Z')).valueOf()",(new Date('2021-10-12T05:05:15.027Z')).valueOf());
-    this.add2("(new Date('2021-10-12T05:05:15.027Z'))",(new Date('2021-10-12T05:05:15.027Z')));
+    this.add2("(new Date('2021-10-12T05:05:15.027Z')).valueOf()", (new Date('2021-10-12T05:05:15.027Z')).valueOf());
+    this.add2("(new Date('2021-10-12T05:05:15.027Z'))", (new Date('2021-10-12T05:05:15.027Z')));
 
     this.add2("dayjs().utc()", dayjs().utc());
     this.add2("dayjs().format()", dayjs().format());
