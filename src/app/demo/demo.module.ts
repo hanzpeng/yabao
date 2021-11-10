@@ -12,6 +12,7 @@ import { EnumTestComponent } from './enum-test/enum-test.component';
 import { DateTimePickerTestComponent } from './date-time-picker-test/date-time-picker-test.component';
 import { TypeScriptComponent } from './type-script/type-script.component';
 import { DemoComponent } from './demo/demo.component';
+import { MaterialIconsComponent } from './material-icons/material-icons.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DemoComponent } from './demo/demo.component';
     DateTimePickerTestComponent,
     TypeScriptComponent,
     DemoComponent,
+    MaterialIconsComponent,
   ],
   imports: [
     CommonModule,
