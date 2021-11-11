@@ -37,3 +37,124 @@ warning-shield {
   color: #ffd700;
   font-size: 0.75rem;
 }
+
+.cross-material {
+  margin-top: 5px;
+
+  > i {
+    font-family: 'Material Icons';
+    font-style: normal;
+    line-height: 1;
+    font-size: 2.0em;
+    color: #ff0000;
+    text-align: center;
+    margin-right: 0.25em;
+
+    &:before {
+      content: "\e5cd"; //close icon(X)
+    }
+  }
+}
+.cross-segos {
+  margin-top: 5px;
+
+  > i {
+    font-family: 'Segoe MDL2 Assets';
+    font-style: normal;
+    line-height: 1;
+    font-size: 1.5rem;
+    color: #ff0000;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+
+    &:before {
+      content: "\e711"; //error icon(X)
+    }
+  }
+}
+
+.check {
+  > i {
+    font-family: 'Segoe MDL2 Assets';
+    font-style: normal;
+    line-height: 1;
+    font-size: 1rem;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    margin-right: 5px;
+
+    &:before {
+      content: "\e73e"; //checkmark icon
+    }
+  }
+
+  &.custom {
+    margin-top: 5px;
+
+    > i {
+      color: #21b597;
+      font-size: 1.5rem;
+    }
+  }
+
+  .badge-template {
+    border: 1px solid #acacac;
+    background-color: #f8f8f8;
+    text-align: center;
+    color: #acacac;
+
+    &.horizontal {
+      height: 180px;
+      width: 350px;
+    }
+
+    > .text-content {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.checkb {
+  > i {
+
+    font-family: 'Material Icons';
+    font-style: normal;
+    line-height: 1;
+    font-size: 1rem;
+    text-align: center;
+    margin-right: 5px;
+
+    &:before {
+      content: "\e876"; //done icon
+    }
+  }
+
+  &.custom {
+    margin-top: 5px;
+
+    > i {
+      color: #21b597;
+      font-size: 1.5rem;
+    }
+  }
+
+  .badge-template {
+    border: 1px solid #acacac;
+    background-color: #f8f8f8;
+    text-align: center;
+    color: #acacac;
+
+    &.horizontal {
+      height: 180px;
+      width: 350px;
+    }
+
+    > .text-content {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
