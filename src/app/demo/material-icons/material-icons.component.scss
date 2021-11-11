@@ -8,3 +8,32 @@
   -webkit-font-smoothing: antialiased;
   margin-right: 20px;
 }
+
+.check-shield {
+  > p {
+    line-height: 1;
+    font-size: 1rem;
+    text-align: center;
+    margin-right: 5px;
+  }
+
+  > p.error-shield {
+    color: #ff0000;
+    font-size: 0.75rem;
+  }
+
+  > p.warning-shield {
+    color: #ffd700;
+    font-size: 0.75rem;
+  }
+}
+
+error-shield {
+  color: #ff0000 !important;
+  font-size: 0.75rem;
+}
+
+warning-shield {
+  color: #ffd700;
+  font-size: 0.75rem;
+}

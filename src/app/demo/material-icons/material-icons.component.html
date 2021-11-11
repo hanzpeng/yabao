@@ -54,7 +54,105 @@
   <span class="shield">
     &#xe83d;
   </span>
+</div> -->
+
+<div>
+  <span class="material-icons" style="color:red;">
+    &#xe004;
+    </span>
+</div>
+
+<div>
+  <span class="material-icons" style="color:green;">
+    &#xe004;
+    </span>
+</div>
+
+
+ <div>
+  <span class="material-icons error-shield">
+    &#xe004;
+  </span>
+</div>
+
+<div>
+  <span class="material-icons" [style]="'color:red;'">
+    &#xe004;
+  </span>
+</div>
+
+
+<!--notification_important material icon-->
+<div *ngIf="getShieldClass('a') as shieldClass">
+  <p *ngIf="shieldClass === 'error-shield' || shieldClass === 'warning-shield'" class="material-icons"
+    [style]="shieldClass === 'error-shield' ? 'color: #ff0000;font-size: 1.25 rem;text-align: center;margin-top: 10px;':'color: #ffd700;font-size: 1.25 rem;text-align: center;margin-top: 10px;'">
+    &#xe004;
+  </p>
+</div>
+<div *ngIf="getShieldClass('b') as shieldClass">
+  <p *ngIf="shieldClass === 'error-shield' || shieldClass === 'warning-shield'" class="material-icons"
+    [style]="shieldClass === 'error-shield' ? 'color: #ff0000;font-size: 1.25 rem;text-align: center;margin-top: 10px;':'color: #ffd700;font-size: 1.25 rem;text-align: center;margin-top: 10px;'">
+    &#xe004;
+  </p>
+</div>
+<div *ngIf="getShieldClass('c') as shieldClass">
+  <p *ngIf="shieldClass === 'error-shield' || shieldClass === 'warning-shield'" class="material-icons"
+    [style]="shieldClass === 'error-shield' ? 'color: #ff0000;font-size: 1.25 rem;text-align: center;margin-top: 10px;':'color: #ffd700;font-size: 1.25 rem;text-align: center;margin-top: 10px;'">
+    &#xe004;
+  </p>
 </div>
 
 
 
+
+
+<div>
+  <span class="material-icons" style="color:red;">
+    &#xe004;
+    </span>
+</div>
+
+<div>
+  <span class="material-icons" style="color:green;">
+    &#xe004;
+    </span>
+</div>
+
+
+<div>
+  <span class="material-icons-outlined">
+    &#xf379;
+    </span>
+</div>
+
+<div>
+  <span class="material-icons-outlined">
+    &#xf34c;
+    </span>
+</div>
+
+
+<div>
+  <span class="material-icons">face</span>
+</div>
+
+<div>
+  <span class="material-icons">security</span>
+</div>
+
+<div>
+  <span class="material-icons">notification-important</span>
+</div>
+
+<div>
+  <mat-icon>NotificationImportant</mat-icon>
+</div>
+
+<div>
+  <span class="material-icons">
+    notification_important
+  </span>
+</div>
+<div>
+  <span class="material-icons">&#379;</span>
+</div>
