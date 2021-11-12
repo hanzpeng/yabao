@@ -48,6 +48,13 @@ export class TypeScriptComponent implements OnInit, AfterViewInit {
     map.set("a", "AAA");
     map.set("b", "BB");
     map.set("c", null);
+    // this does not work
+    this.add(map["a"]);
+    this.add(map.get("a"));
+    //this does not work
+    map["a"]="SSS";
+    this.add(map.get("a"));
+
     map.forEach((value, key) => {
       this.add(key, value);
     });
