@@ -19,11 +19,12 @@ export class TypeScriptComponent implements OnInit, AfterViewInit {
     // this.testsEnumConversion();
     // this.testAsignWithOr();
     // this.testMapDefault();
-    this.testMapForEach();
+    //this.testMapForEach();
+    this.testRegex();
   }
   @ViewChild("grid") grid: ElementRef;
   add(label: string, value?: any) {
-    if(!value){
+    if (!value) {
       value = "";
     }
     this.grid.nativeElement.innerHTML += `<div>${label}</div><div>${value}</div>`
@@ -52,7 +53,7 @@ export class TypeScriptComponent implements OnInit, AfterViewInit {
     this.add(map["a"]);
     this.add(map.get("a"));
     //this does not work
-    map["a"]="SSS";
+    map["a"] = "SSS";
     this.add(map.get("a"));
 
     map.forEach((value, key) => {
@@ -74,7 +75,7 @@ export class TypeScriptComponent implements OnInit, AfterViewInit {
       this.add(id.toString());
     }
 
-    map.forEach((vaule: string, key:string) => {
+    map.forEach((vaule: string, key: string) => {
       this.add(key);
     });
   }
@@ -107,6 +108,19 @@ export class TypeScriptComponent implements OnInit, AfterViewInit {
       endedAt: endedAt || null
     };
     this.add(`datacenterId: ${datacenterId}, userId: ${userId}, endedAt: ${endedAt}`, JSON.stringify(searchQueryParams));
+  }
+
+  testRegex() {
+    const email = "hanz@microsoft.com";
+    const matches = email.match(/^([^@]*)@(.*)/);
+    for (let x of matches) {
+      this.add(x);
+    }
+    const alias = matches[1];
+    const domain = matches[2];
+    this.add("alias", alias);
+    this.add("domain", domain);
+
   }
 
 
